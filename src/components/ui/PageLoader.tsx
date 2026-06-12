@@ -15,6 +15,8 @@ export function PageLoader() {
     const bar = barRef.current;
     if (!loader || !logo || !bar) return;
 
+    const fallbackTimer = window.setTimeout(() => setDone(true), 3000);
+
     gsap.set(bar, { scaleX: 0, transformOrigin: "left center" });
 
     const tl = gsap.timeline({
@@ -44,6 +46,7 @@ export function PageLoader() {
       });
 
     return () => {
+      window.clearTimeout(fallbackTimer);
       tl.kill();
     };
   }, []);

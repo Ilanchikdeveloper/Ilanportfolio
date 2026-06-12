@@ -21,6 +21,14 @@
 # misc
 .DS_Store
 *.pem
+desktop.ini
+
+# local source assets (deployed copies live in /public)
+/Photos/
+/VIDEO/
+/LOGOFOLIO/
+/giffs/
+/social media/
 
 # debug
 npm-debug.log*

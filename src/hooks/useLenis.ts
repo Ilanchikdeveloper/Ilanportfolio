@@ -65,7 +65,8 @@ export function useLenis() {
       gsap.ticker.remove(tickerCallback);
       lenisRef.current = null;
       lenis.destroy();
-      ScrollTrigger.getAll().forEach((t) => t.kill());
+      ScrollTrigger.scrollerProxy(document.documentElement, {});
+      ScrollTrigger.clearScrollMemory();
     };
   }, []);
 

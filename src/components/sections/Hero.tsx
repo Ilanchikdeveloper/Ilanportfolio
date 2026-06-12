@@ -34,6 +34,8 @@ export function Hero() {
           scrub: 1.4,
         },
       });
+
+      ScrollTrigger.refresh();
     }, section);
 
     return () => ctx.revert();
@@ -65,14 +67,14 @@ export function Hero() {
           <div className="col-span-12">
             <h1
               ref={headingRef}
-              className="gpu text-[clamp(2.2rem,11vw,8.5rem)] leading-[0.9] tracking-tight text-white mb-[20px] opacity-0"
+              className="gpu text-[clamp(2.2rem,11vw,8.5rem)] leading-[0.9] tracking-tight text-white mb-[20px]"
             >
               <span className="font-black">Ilan</span><span className="font-thin">Biniashvili</span>
             </h1>
 
             <p
               ref={paragraphRef}
-              className="gpu text-[0.8rem] leading-relaxed text-white/90 max-w-xl md:max-w-2xl opacity-0"
+              className="gpu text-[0.8rem] leading-relaxed text-white/90 max-w-xl md:max-w-2xl"
             >
               Visual communication is not decoration—it is structure, hierarchy,
               rhythm, and meaning. The projects presented here explore how design
