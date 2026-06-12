@@ -1,7 +1,6 @@
 "use client";
 
 import { email, socialLinks } from "@/lib/data";
-import { SocialIcon } from "@/components/ui/SocialIcons";
 
 export function Footer() {
   return (
@@ -25,17 +24,16 @@ export function Footer() {
               {email}
             </a>
 
-            <div className="flex items-center gap-3 sm:gap-4">
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[0.8rem]">
               {socialLinks.map((link) => (
                 <a
                   key={link.label}
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={link.label}
-                  className="flex h-10 w-10 items-center justify-center rounded-[8px] bg-accent-green text-bg transition-opacity duration-500 hover:opacity-80"
+                  className="text-text/75 hover:text-accent-green transition-colors duration-500 hover-line"
                 >
-                  <SocialIcon name={link.icon} className="h-4 w-4" />
+                  {link.label}
                 </a>
               ))}
             </div>

@@ -73,41 +73,42 @@ export function About() {
 
             <div
               data-about-item
-              className="grid grid-cols-1 md:grid-cols-2 gap-y-10 gap-x-8 md:gap-x-14 lg:gap-x-16 w-full gpu"
+              className="grid grid-cols-1 md:grid-cols-2 md:grid-rows-[auto_auto_1fr] gap-x-8 md:gap-x-14 lg:gap-x-16 gap-y-3 md:gap-y-3 w-full gpu"
             >
-              <div>
-                <h2 className="text-[0.75rem] font-bold uppercase tracking-[0.22em] mb-3">
-                  About Me
-                </h2>
-                <div className="h-px bg-[#1a1a1a]/25 mb-3" />
-                <p className="text-[0.8rem] leading-relaxed text-[#1a1a1a]/75">
-                  I&apos;m a graphic designer from Georgia specializing in visual
-                  communication, problem-solving, and creating designs that help
-                  brands increase engagement and connect with their audience. I
-                  focus on transforming ideas into clear, impactful visuals that
-                  strengthen a company&apos;s identity
-                </p>
-              </div>
+              <h2 className="order-1 md:order-none md:col-start-1 md:row-start-1 text-[0.75rem] font-bold uppercase tracking-[0.22em]">
+                About Me
+              </h2>
+              <div className="order-2 md:order-none md:col-start-1 md:row-start-2 h-px bg-[#1a1a1a]/25" />
+              <p className="order-3 md:order-none md:col-start-1 md:row-start-3 text-[0.8rem] leading-relaxed text-[#1a1a1a]/75 mb-7 md:mb-0">
+                I&apos;m a graphic designer from Georgia specializing in visual
+                communication, problem-solving, and creating designs that help
+                brands increase engagement and connect with their audience. I
+                focus on transforming ideas into clear, impactful visuals that
+                strengthen a company&apos;s identity
+              </p>
 
-              <div>
-                <h2 className="text-[0.75rem] font-bold uppercase tracking-[0.22em] mb-3">
-                  Tools I Use
-                </h2>
-                <div className="h-px bg-[#1a1a1a]/25 mb-3" />
-                <div className="flex gap-x-3 sm:gap-x-5 md:gap-x-7 lg:gap-x-9">
-                  {toolColumns.map((column, colIndex) => (
-                    <ul key={colIndex} className="min-w-0 flex-1 space-y-6">
-                      {column.map((tool) => (
-                        <li key={tool}>
-                          <span className="block text-[0.7rem] sm:text-[0.75rem] md:text-[0.8rem] text-[#1a1a1a]/75 pb-3 leading-tight">
-                            {tool}
-                          </span>
-                          <div className="h-px bg-[#1a1a1a]/15" />
-                        </li>
-                      ))}
-                    </ul>
-                  ))}
-                </div>
+              <h2 className="order-4 md:order-none md:col-start-2 md:row-start-1 text-[0.75rem] font-bold uppercase tracking-[0.22em]">
+                Tools I Use
+              </h2>
+              <div className="order-5 md:order-none md:col-start-2 md:row-start-2 h-px bg-[#1a1a1a]/25" />
+              <div className="order-6 md:order-none md:col-start-2 md:row-start-3 flex w-full flex-col">
+                {[0, 1, 2].map((rowIndex) => (
+                  <div
+                    key={rowIndex}
+                    className={`grid grid-cols-3 gap-x-4 sm:gap-x-6 md:gap-x-7 lg:gap-x-9 py-3 ${
+                      rowIndex === 0 ? "pt-0" : ""
+                    } ${rowIndex < 2 ? "border-b border-[#1a1a1a]/15" : ""}`}
+                  >
+                    {toolColumns.map((column, colIndex) => (
+                      <span
+                        key={`${rowIndex}-${colIndex}`}
+                        className="text-[0.7rem] sm:text-[0.75rem] md:text-[0.8rem] leading-snug text-[#1a1a1a]/75"
+                      >
+                        {column[rowIndex]}
+                      </span>
+                    ))}
+                  </div>
+                ))}
               </div>
             </div>
           </div>
