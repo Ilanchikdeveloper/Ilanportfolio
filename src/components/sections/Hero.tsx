@@ -43,9 +43,9 @@ export function Hero() {
 
   return (
     <section ref={sectionRef} className="relative w-full overflow-hidden">
-      <div className="relative h-[100vh] w-full">
+      <div className="relative h-[52vh] min-h-[240px] max-h-[400px] sm:h-[60vh] sm:max-h-[480px] md:h-[80vh] md:max-h-none lg:h-[100vh]">
         <video
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover object-[center_42%] md:object-center"
           autoPlay
           muted
           loop
