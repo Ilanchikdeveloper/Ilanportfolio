@@ -4,12 +4,12 @@ const asset = (file: string) => `/photos/koru-project/${file}`;
 
 const koruSlides: BrandProjectSlide[] = [
   { type: "image", src: asset("koru-1.webp") },
-  { type: "video", src: asset("koru-wordmark.mp4") },
+  { type: "gif", src: asset("koru-wordmark.gif") },
   { type: "image", src: asset("koru-2.webp") },
   { type: "image", src: asset("koru-3.webp") },
   {
     type: "grid",
-    items: [asset("display-1.mp4"), asset("display-2.mp4")],
+    items: [asset("display-1.gif"), asset("display-2.gif")],
   },
   {
     type: "grid",
@@ -18,12 +18,12 @@ const koruSlides: BrandProjectSlide[] = [
   { type: "image", src: asset("koru-6.webp") },
   { type: "image", src: asset("koru-7.webp") },
   { type: "image", src: asset("koru-8.webp") },
-  { type: "video", src: asset("logo-grid-animation.mp4") },
+  { type: "gif", src: asset("logo-grid-animation.gif") },
   { type: "image", src: asset("koru-9.webp") },
-  { type: "video", src: asset("mech-animation.mp4") },
+  { type: "gif", src: asset("mech-animation.gif") },
   { type: "image", src: asset("koru-10.webp") },
   { type: "image", src: asset("koru-11.webp") },
-  { type: "video", src: asset("billboard.mp4") },
+  { type: "gif", src: asset("billboard.gif") },
   { type: "image", src: asset("koru-12.webp") },
   {
     type: "grid",
@@ -32,14 +32,14 @@ const koruSlides: BrandProjectSlide[] = [
   { type: "image", src: asset("koru-15.webp") },
   {
     type: "grid",
-    items: [asset("motion-tile-animation.mp4"), asset("pulsing-animation-logo.mp4")],
+    items: [asset("motion-tile-animation.gif"), asset("pulsing-animation-logo.gif")],
   },
   { type: "image", src: asset("koru-16.webp") },
   { type: "image", src: asset("koru-17.webp") },
   { type: "image", src: asset("koru-18.webp") },
   {
     type: "grid",
-    items: [asset("cyan-animation-1.mp4"), asset("animation-dark-2.mp4")],
+    items: [asset("cyan-animation-1.gif"), asset("animation-dark-2.gif")],
   },
   { type: "image", src: asset("koru-19.webp") },
   { type: "image", src: asset("koru-20.webp") },
@@ -47,13 +47,13 @@ const koruSlides: BrandProjectSlide[] = [
   { type: "image", src: asset("koru-22.webp") },
   {
     type: "grid",
-    items: [asset("loading-animation.mp4"), asset("app-motion.mp4")],
+    items: [asset("loading-animation.gif"), asset("app-motion.mp4")],
   },
   { type: "image", src: asset("koru-23.webp") },
   { type: "image", src: asset("koru-24.webp") },
   { type: "image", src: asset("koru-25.webp") },
   { type: "image", src: asset("koru-26.webp") },
-  { type: "video", src: asset("koru-wordmark.mp4") },
+  { type: "gif", src: asset("koru-wordmark.gif") },
 ];
 
 export const koruProject: BrandProject = {
