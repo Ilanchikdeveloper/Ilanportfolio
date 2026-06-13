@@ -5,7 +5,7 @@ const asset = (file: string) => `/photos/affio-project/${file}`;
 const affioSlides: BrandProjectSlide[] = [
   { type: "image", src: asset("affio-2.webp") },
   { type: "image", src: asset("affio-3.webp") },
-  { type: "gif", src: asset("affio-reveal.gif") },
+  { type: "video", src: asset("affio-reveal.mp4") },
   { type: "gif", src: asset("affio-line-right.gif") },
   { type: "image", src: asset("affio-4.webp") },
   { type: "image", src: asset("affio-5.webp") },
@@ -14,7 +14,7 @@ const affioSlides: BrandProjectSlide[] = [
   { type: "image", src: asset("affio-7.webp") },
   {
     type: "grid",
-    items: [asset("affio-gif-1.gif"), asset("affio-gif-2.gif")],
+    items: [asset("affio-gif-1.mp4"), asset("affio-gif-2.mp4")],
   },
   ...Array.from({ length: 17 }, (_, index) => ({
     type: "image" as const,
