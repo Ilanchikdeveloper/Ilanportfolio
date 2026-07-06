@@ -62,7 +62,7 @@ export function About() {
             ref={contentRef}
             className="about-content-block w-full max-w-none sm:max-w-[580px] md:max-w-[640px]"
           >
-            <div data-about-item className="mb-10 md:mb-14 gpu">
+            <div data-about-item className="mb-[3.6rem] md:mb-[4.8rem] gpu">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/photos/who-am-i.png"
@@ -79,7 +79,7 @@ export function About() {
                 About Me
               </h2>
               <div className="order-2 md:order-none md:col-start-1 md:row-start-2 h-px bg-[#1a1a1a]/25" />
-              <p className="order-3 md:order-none md:col-start-1 md:row-start-3 text-[0.8rem] leading-relaxed text-[#1a1a1a]/75 mb-7 md:mb-0">
+              <p className="order-3 md:order-none md:col-start-1 md:row-start-3 text-[0.875rem] leading-relaxed text-[#1a1a1a]/75 mb-7 md:mb-0">
                 I&apos;m a graphic designer from Georgia specializing in visual
                 communication, problem-solving, and creating designs that help
                 brands increase engagement and connect with their audience. I
@@ -102,7 +102,7 @@ export function About() {
                     {toolColumns.map((column, colIndex) => (
                       <span
                         key={`${rowIndex}-${colIndex}`}
-                        className="text-[0.7rem] sm:text-[0.75rem] md:text-[0.8rem] leading-snug text-[#1a1a1a]/75"
+                        className="text-[0.7rem] sm:text-[0.75rem] md:text-[0.875rem] leading-snug text-[#1a1a1a]/75"
                       >
                         {column[rowIndex]}
                       </span>

@@ -15,13 +15,29 @@ export function Header() {
     const header = headerRef.current;
     if (!header) return;
 
-    gsap.from(header, {
-      y: -20,
-      opacity: 0,
-      duration: 1,
-      delay: 0.3,
-      ease: "power3.out",
-    });
+    const tween = gsap.fromTo(
+      header,
+      { y: -20, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1,
+        delay: 0.3,
+        ease: "power3.out",
+      }
+    );
+
+    return () => {
+      tween.kill();
+      gsap.set(header, { opacity: 1, y: 0, clearProps: "transform" });
+    };
+  }, []);
+
+  useEffect(() => {
+    const header = headerRef.current;
+    if (header) {
+      gsap.set(header, { opacity: 1, y: 0 });
+    }
 
     if (pathname.startsWith("/work")) {
       setOnLight(false);
@@ -30,14 +46,21 @@ export function Header() {
 
     const about = document.getElementById("about");
     const branding = document.getElementById("branding");
+    const otherWork = document.getElementById("other-work");
+    const contact = document.getElementById("contact");
 
     const onScroll = () => {
       if (!about) return;
 
       const aboutTop = about.getBoundingClientRect().top;
       const brandingTop = branding?.getBoundingClientRect().top ?? Infinity;
+      const otherWorkTop = otherWork?.getBoundingClientRect().top ?? Infinity;
+      const contactTop = contact?.getBoundingClientRect().top ?? Infinity;
 
-      setOnLight(aboutTop <= 80 && brandingTop > 80);
+      const inAbout = aboutTop <= 80 && brandingTop > 80;
+      const inOtherWork = otherWorkTop <= 80 && contactTop > 80;
+
+      setOnLight(inAbout || inOtherWork);
     };
 
     onScroll();
@@ -85,6 +108,7 @@ export function Header() {
     <>
       <header
         ref={headerRef}
+        data-on-light={onLight || undefined}
         className="fixed top-0 left-0 right-0 z-50 pointer-events-none"
       >
         <div className="grid-layout py-5 sm:py-6 md:py-8 items-center pointer-events-auto">
@@ -94,7 +118,9 @@ export function Header() {
               <img
                 src="/photos/my-logo.svg"
                 alt="Ilan Biniashvili"
-                className="h-9 w-auto md:h-11"
+                className={`h-9 w-auto md:h-11 transition-[filter] duration-500 ${
+                  !menuOpen && onLight ? "nav-logo-on-light" : ""
+                }`}
               />
             </a>
 
@@ -103,7 +129,7 @@ export function Header() {
                 <a
                   key={link.href}
                   href={link.href}
-                  className={`text-[0.75rem] uppercase tracking-[0.14em] transition-colors duration-500 hover:text-accent-green ${
+                  className={`hover-line text-[0.875rem] tracking-[0.02em] transition-colors duration-500 hover:text-accent-green ${
                     onLight ? "text-[#1a1a1a]/80" : "text-white/80"
                   }`}
                 >
@@ -156,7 +182,7 @@ export function Header() {
               key={link.href}
               href={link.href}
               onClick={() => setMenuOpen(false)}
-              className="font-display text-3xl sm:text-4xl font-thin tracking-tight text-white transition-colors duration-500 hover:text-accent-green"
+              className="hover-line font-display text-3xl sm:text-4xl font-thin tracking-tight text-white transition-colors duration-500 hover:text-accent-green"
             >
               {link.label}
             </a>

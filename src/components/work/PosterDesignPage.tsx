@@ -92,7 +92,7 @@ export default function PosterDesignPage() {
         <div className="pt-24 sm:pt-28 md:pt-32 pb-6 sm:pb-8">
           <Link
             href="/#other-work"
-            className="text-[0.8rem] text-white/55 hover:text-accent-green transition-colors duration-500 hover-line w-fit"
+            className="text-[0.875rem] text-white/55 hover:text-accent-green transition-colors duration-500 hover-line w-fit"
           >
             ← Back to other work
           </Link>
@@ -108,7 +108,7 @@ export default function PosterDesignPage() {
 
           <p
             ref={paragraphRef}
-            className="gpu text-[0.8rem] leading-relaxed text-white/55 max-w-xl md:max-w-2xl will-change-transform"
+            className="gpu text-[0.875rem] leading-relaxed text-white/55 max-w-xl md:max-w-2xl will-change-transform"
           >
             Posters are where typography, imagery, and message collide at full
             scale. Each piece below explores bold composition, visual tension,

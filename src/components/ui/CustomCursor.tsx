@@ -6,12 +6,15 @@ import gsap from "gsap";
 const INTERACTIVE =
   "a, button, [role='button'], input, textarea, select, label, [data-cursor='pointer']";
 
+const LIGHT_SURFACE = "#about, #other-work, header[data-on-light]";
+
 export function CustomCursor() {
   const coreRef = useRef<HTMLDivElement>(null);
   const frameRef = useRef<HTMLDivElement>(null);
   const labelRef = useRef<HTMLSpanElement>(null);
   const hoveringRef = useRef(false);
   const clickingRef = useRef(false);
+  const onLightRef = useRef(false);
 
   useEffect(() => {
     if (!window.matchMedia("(pointer: fine)").matches) return;
@@ -54,6 +57,15 @@ export function CustomCursor() {
       ease: "power3.out",
     });
 
+    const setLight = (active: boolean) => {
+      if (onLightRef.current === active) return;
+      onLightRef.current = active;
+
+      frame.classList.toggle("is-light", active);
+      core.classList.toggle("is-light", active);
+      label.classList.toggle("is-light", active);
+    };
+
     const setHover = (active: boolean) => {
       if (hoveringRef.current === active) return;
       hoveringRef.current = active;
@@ -93,6 +105,7 @@ export function CustomCursor() {
       gsap.to([core, frame], { opacity: 1, duration: 0.25, ease: "power2.out" });
 
       const target = document.elementFromPoint(clientX, clientY);
+      setLight(!!target?.closest(LIGHT_SURFACE));
       setHover(!!target?.closest(INTERACTIVE));
     };
 

@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
+import { AppShell } from "@/components/layout/AppShell";
 import { SmoothScroll } from "@/components/providers/SmoothScroll";
 import { PageLoader } from "@/components/ui/PageLoader";
 import { CustomCursor } from "@/components/ui/CustomCursor";
@@ -39,7 +40,9 @@ export default function RootLayout({
       <body className="antialiased">
         <CustomCursor />
         <PageLoader />
-        <SmoothScroll>{children}</SmoothScroll>
+        <AppShell>
+          <SmoothScroll>{children}</SmoothScroll>
+        </AppShell>
       </body>
     </html>
   );

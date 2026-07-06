@@ -94,7 +94,7 @@ export function Branding() {
 
           <p
             ref={paragraphRef}
-            className="gpu text-[0.8rem] leading-relaxed text-white/55 max-w-xl md:max-w-2xl will-change-transform"
+            className="gpu text-[0.875rem] leading-relaxed text-white/55 max-w-xl md:max-w-2xl will-change-transform"
           >
             Brand identity is not just aesthetics—it is strategy, consistency,
             personality, and meaning. Each identity featured below demonstrates

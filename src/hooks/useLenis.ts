@@ -71,8 +71,26 @@ export function useLenis() {
   }, []);
 
   useEffect(() => {
-    const scrollToTop = () => {
+    const scrollToTarget = () => {
       const lenis = lenisRef.current;
+      const hash = window.location.hash;
+      const target = hash
+        ? (document.querySelector(hash) as HTMLElement | null)
+        : null;
+
+      if (target && lenis) {
+        lenis.scrollTo(target, { immediate: true });
+        ScrollTrigger.refresh();
+        return true;
+      }
+
+      if (target) {
+        target.scrollIntoView();
+        ScrollTrigger.refresh();
+        return true;
+      }
+
+      if (hash) return false;
 
       if (lenis) {
         lenis.scrollTo(0, { immediate: true });
@@ -81,12 +99,17 @@ export function useLenis() {
       }
 
       ScrollTrigger.refresh();
+      return true;
     };
 
-    scrollToTop();
+    const run = () => {
+      if (scrollToTarget()) return;
+      requestAnimationFrame(() => {
+        if (scrollToTarget()) return;
+        window.setTimeout(scrollToTarget, 100);
+      });
+    };
 
-    requestAnimationFrame(() => {
-      scrollToTop();
-    });
+    run();
   }, [pathname]);
 }

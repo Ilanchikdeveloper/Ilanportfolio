@@ -24,7 +24,7 @@ export function Footer() {
               {email}
             </a>
 
-            <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[0.8rem]">
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[0.875rem]">
               {socialLinks.map((link) => (
                 <a
                   key={link.label}

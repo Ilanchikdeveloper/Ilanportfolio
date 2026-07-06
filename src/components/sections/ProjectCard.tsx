@@ -87,13 +87,13 @@ export function ProjectCard({
             {title}
           </h3>
 
-          <p className="text-[0.8rem] leading-relaxed text-white/55 mb-8 transition-colors duration-500 group-hover:text-white/75">
+          <p className="text-[0.875rem] leading-relaxed text-white/55 mb-8 transition-colors duration-500 group-hover:text-white/75">
             {description}
           </p>
 
           <div className="h-px bg-white/15 mb-5 transition-colors duration-500 group-hover:bg-white/30" />
 
-          <span className="inline-block text-[0.8rem] text-white transition-colors duration-500 group-hover:text-accent-green hover-line">
+          <span className="inline-block text-[0.875rem] text-white transition-colors duration-500 group-hover:text-accent-green hover-line">
             See more
           </span>
         </div>

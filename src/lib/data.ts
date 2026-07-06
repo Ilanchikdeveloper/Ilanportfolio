@@ -37,7 +37,7 @@ export const brandingProjects = [
 ];
 
 export const navLinks = [
-  { label: "Project", href: "/#branding" },
+  { label: "Projects", href: "/#branding" },
   { label: "About", href: "/#about" },
   { label: "Contact", href: "/#contact" },
 ];

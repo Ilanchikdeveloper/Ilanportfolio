@@ -24,6 +24,21 @@ export function OtherWork() {
 
     const ctx = gsap.context(() => {
       gsap.fromTo(
+        section,
+        { backgroundColor: "#080808" },
+        {
+          backgroundColor: "#ffffff",
+          ease: "none",
+          scrollTrigger: {
+            trigger: section,
+            start: "top 95%",
+            end: "top 55%",
+            scrub: 1.2,
+          },
+        }
+      );
+
+      gsap.fromTo(
         heading,
         {
           y: 100,
@@ -72,7 +87,7 @@ export function OtherWork() {
     <section
       id="other-work"
       ref={sectionRef}
-      className="section-other-work-padding pb-16 md:pb-40 border-t border-border"
+      className="bg-[#080808] text-[#1a1a1a] section-other-work-padding pb-16 md:pb-40 border-t border-[#1a1a1a]/15"
     >
       <div ref={introRef} className="grid-layout mb-16">
         <h2
@@ -89,17 +104,17 @@ export function OtherWork() {
             key={item.id}
             href={item.href}
             data-work-item
-            className="group col-span-12 flex items-center justify-between gap-4 border-t border-border py-6 sm:py-8 md:py-12 gpu"
+            className="group col-span-12 flex items-center justify-between gap-4 border-t border-[#1a1a1a]/15 py-6 sm:py-8 md:py-12 gpu"
           >
-            <h3 className="font-display text-xl sm:text-2xl md:text-[2.4rem] font-thin tracking-tight transition-all duration-500 group-hover:translate-x-6 group-hover:text-accent-green">
+            <h3 className="font-display text-xl sm:text-2xl md:text-[2.4rem] font-thin tracking-tight text-[#1a1a1a] transition-all duration-500 group-hover:translate-x-6 group-hover:text-[#8a8a8a]">
               {item.title}
             </h3>
-            <span className="text-muted text-xl opacity-0 group-hover:opacity-100 group-hover:text-accent-green transition-all duration-500 group-hover:translate-x-[-8px]">
+            <span className="text-[#1a1a1a]/45 text-xl opacity-0 transition-all duration-500 group-hover:translate-x-[-8px] group-hover:opacity-100 group-hover:text-[#8a8a8a]">
               →
             </span>
           </a>
         ))}
-        <div className="col-span-12 border-t border-border" />
+        <div className="col-span-12 border-t border-[#1a1a1a]/15" />
       </div>
     </section>
   );

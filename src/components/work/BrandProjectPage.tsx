@@ -38,30 +38,30 @@ function CaseStudySection({ project }: { project: BrandProject }) {
         <h2 className="text-[clamp(2.5rem,6vw,4.5rem)] font-bold uppercase tracking-tight leading-[0.95] mb-[20px]">
           {caseStudy.heading}
         </h2>
-        <p className="text-[0.8rem] leading-relaxed text-white/55 max-w-xl">
+        <p className="text-[0.875rem] leading-relaxed text-white/55 max-w-xl">
           {caseStudy.intro}
         </p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-8 lg:gap-10">
         <div>
-          <h3 className="text-[0.8rem] font-bold uppercase tracking-[0.08em] text-white mb-5">
+          <h3 className="text-[0.875rem] font-bold uppercase tracking-[0.08em] text-white mb-5">
             {caseStudy.problem.title}
           </h3>
-          <p className="text-[0.8rem] leading-relaxed text-white/55">
+          <p className="text-[0.875rem] leading-relaxed text-white/55">
             {caseStudy.problem.text}
           </p>
         </div>
 
         <div>
-          <h3 className="text-[0.8rem] font-bold uppercase tracking-[0.08em] text-white mb-5">
+          <h3 className="text-[0.875rem] font-bold uppercase tracking-[0.08em] text-white mb-5">
             {caseStudy.approach.title}
           </h3>
           <div className="space-y-5">
             {caseStudy.approach.paragraphs.map((paragraph) => (
               <p
                 key={paragraph.slice(0, 24)}
-                className="text-[0.8rem] leading-relaxed text-white/55"
+                className="text-[0.875rem] leading-relaxed text-white/55"
               >
                 {paragraph}
               </p>
@@ -70,14 +70,14 @@ function CaseStudySection({ project }: { project: BrandProject }) {
         </div>
 
         <div>
-          <h3 className="text-[0.8rem] font-bold uppercase tracking-[0.08em] text-white mb-5">
+          <h3 className="text-[0.875rem] font-bold uppercase tracking-[0.08em] text-white mb-5">
             {caseStudy.solution.title}
           </h3>
           <div className="space-y-5">
             {caseStudy.solution.paragraphs.map((paragraph) => (
               <p
                 key={paragraph.slice(0, 24)}
-                className="text-[0.8rem] leading-relaxed text-white/55"
+                className="text-[0.875rem] leading-relaxed text-white/55"
               >
                 {paragraph}
               </p>
@@ -241,7 +241,7 @@ export default function BrandProjectPage({ project }: { project: BrandProject })
         <div className="pt-24 sm:pt-28 md:pt-32 pb-6 sm:pb-8">
           <Link
             href="/#branding"
-            className="text-[0.8rem] text-white/55 hover:text-accent-green transition-colors duration-500 hover-line w-fit"
+            className="text-[0.875rem] text-white/55 hover:text-accent-green transition-colors duration-500 hover-line w-fit"
           >
             ← Back to projects
           </Link>
@@ -282,10 +282,10 @@ export default function BrandProjectPage({ project }: { project: BrandProject })
               <h1 className="text-[clamp(3rem,10vw,7rem)] font-bold tracking-tight leading-[0.9] mb-[20px]">
                 {project.title}
               </h1>
-              <p className="text-[0.8rem] leading-relaxed text-white/55 max-w-2xl mb-12">
+              <p className="text-[0.875rem] leading-relaxed text-white/55 max-w-2xl mb-12">
                 {project.description}
               </p>
-              <p className="text-[0.8rem] leading-relaxed text-white/55 max-w-2xl">
+              <p className="text-[0.875rem] leading-relaxed text-white/55 max-w-2xl">
                 {project.overview}
               </p>
             </div>
@@ -296,7 +296,7 @@ export default function BrandProjectPage({ project }: { project: BrandProject })
                   Year
                 </p>
                 <div className="h-px bg-white/15 mb-4" />
-                <p className="text-[0.8rem] text-white/75">{project.year}</p>
+                <p className="text-[0.875rem] text-white/75">{project.year}</p>
               </div>
 
               <div>
@@ -308,7 +308,7 @@ export default function BrandProjectPage({ project }: { project: BrandProject })
                   {project.services.map((service) => (
                     <li
                       key={service}
-                      className="text-[0.8rem] text-white/75 border-b border-white/10 pb-3"
+                      className="text-[0.875rem] text-white/75 border-b border-white/10 pb-3"
                     >
                       {service}
                     </li>
