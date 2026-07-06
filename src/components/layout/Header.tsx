@@ -65,6 +65,16 @@ export function Header() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [menuOpen]);
 
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const onChange = () => {
+      if (mq.matches) setMenuOpen(false);
+    };
+
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+
   const iconColor = menuOpen
     ? "bg-white"
     : onLight
@@ -88,13 +98,27 @@ export function Header() {
               />
             </a>
 
+            <nav className="hidden lg:flex items-center gap-8 xl:gap-10">
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className={`text-[0.75rem] uppercase tracking-[0.14em] transition-colors duration-500 hover:text-accent-green ${
+                    onLight ? "text-[#1a1a1a]/80" : "text-white/80"
+                  }`}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </nav>
+
             <button
               type="button"
               aria-label={menuOpen ? "Close menu" : "Open menu"}
               aria-expanded={menuOpen}
               aria-controls="site-menu"
               onClick={() => setMenuOpen((open) => !open)}
-              className="relative z-[60] flex h-10 w-10 items-center justify-center"
+              className="relative z-[60] flex h-10 w-10 items-center justify-center lg:hidden"
             >
               <span className="sr-only">Menu</span>
               <span
@@ -119,7 +143,7 @@ export function Header() {
 
       <div
         id="site-menu"
-        className={`fixed inset-0 z-40 bg-black/95 backdrop-blur-sm transition-opacity duration-300 ${
+        className={`fixed inset-0 z-40 bg-black/95 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${
           menuOpen
             ? "pointer-events-auto opacity-100"
             : "pointer-events-none opacity-0"
