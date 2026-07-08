@@ -1,115 +1,143 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { tools } from "@/lib/data";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const toolColumns = [
-  tools.slice(0, 3),
-  tools.slice(3, 6),
-  tools.slice(6, 9),
-];
+const REVEAL_INTRO =
+  "I turn founders' visions into remarkable brands by combining strategy, design, and performance marketing, all under one roof.";
+const REVEAL_CTA = ["Explore", "My", "services"];
+
+function getTrackHeight(wordCount: number) {
+  const vh = Math.min(Math.max(wordCount * 7.5, 150), 220);
+  return `${vh}vh`;
+}
+
+const LUXE_NOIR_LIFT = "#0e1413";
+const SOFT_OAT = "#F0EDE5";
+
+function RevealWord({ word }: { word: string }) {
+  return (
+    <span data-reveal-word className="inline">
+      {word}
+    </span>
+  );
+}
 
 export function About() {
   const sectionRef = useRef<HTMLElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLParagraphElement>(null);
+  const ctaRef = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
     const section = sectionRef.current;
-    const content = contentRef.current;
-    if (!section || !content) return;
+    const track = trackRef.current;
+    const textEl = textRef.current;
+    const ctaLink = ctaRef.current;
+    if (!section || !track || !textEl) return;
 
-    const items = content.querySelectorAll("[data-about-item]");
+    const words = Array.from(
+      textEl.querySelectorAll<HTMLElement>("[data-reveal-word]")
+    );
+    if (!words.length) return;
+
+    const ctaStartIndex = words.length - REVEAL_CTA.length;
+
+    gsap.set(words, { color: LUXE_NOIR_LIFT });
+    if (ctaLink) {
+      gsap.set(ctaLink, { borderBottomColor: LUXE_NOIR_LIFT });
+    }
 
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        items,
-        {
-          y: 70,
-          opacity: 0,
-          force3D: true,
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: track,
+          start: "top top",
+          end: "bottom bottom",
+          scrub: 1.8,
+          invalidateOnRefresh: true,
         },
-        {
-          y: 0,
-          opacity: 1,
-          ease: "none",
-          stagger: 0.1,
-          scrollTrigger: {
-            trigger: content,
-            start: "top 92%",
-            end: "top 55%",
-            scrub: 1.4,
+      });
+
+      words.forEach((word, index) => {
+        tl.to(
+          word,
+          {
+            color: SOFT_OAT,
+            duration: 1,
+            ease: "none",
           },
+          ">"
+        );
+
+        if (index === ctaStartIndex && ctaLink) {
+          tl.to(
+            ctaLink,
+            {
+              borderBottomColor: SOFT_OAT,
+              duration: REVEAL_CTA.length,
+              ease: "none",
+            },
+            "<"
+          );
         }
-      );
+      });
+
+      requestAnimationFrame(() => ScrollTrigger.refresh());
     }, section);
 
     return () => ctx.revert();
   }, []);
 
+  const introWords = REVEAL_INTRO.split(" ");
+  const wordCount = introWords.length + REVEAL_CTA.length;
+
   return (
     <section
       id="about"
       ref={sectionRef}
-      className="bg-white text-[#1a1a1a] section-intro-padding pb-16 md:pb-20 lg:pb-28"
+      className="bg-luxe-noir text-soft-oat pt-[9.75rem] md:pt-[13.65rem] lg:pt-[17.55rem]"
     >
-      <div className="grid-layout">
-        <div className="col-span-12 flex justify-end">
-          <div
-            ref={contentRef}
-            className="about-content-block w-full max-w-none sm:max-w-[580px] md:max-w-[640px]"
-          >
-            <div data-about-item className="mb-[3.6rem] md:mb-[4.8rem] gpu">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/photos/who-am-i.png"
-                alt="Who am i"
-                className="block w-full h-auto max-md:scale-100 md:scale-110 origin-top-right"
-              />
-            </div>
-
-            <div
-              data-about-item
-              className="grid grid-cols-1 md:grid-cols-2 md:grid-rows-[auto_auto_1fr] gap-x-8 md:gap-x-14 lg:gap-x-16 gap-y-3 md:gap-y-3 w-full gpu"
-            >
-              <h2 className="order-1 md:order-none md:col-start-1 md:row-start-1 text-[0.75rem] font-bold uppercase tracking-[0.22em]">
-                About Me
-              </h2>
-              <div className="order-2 md:order-none md:col-start-1 md:row-start-2 h-px bg-[#1a1a1a]/25" />
-              <p className="order-3 md:order-none md:col-start-1 md:row-start-3 text-[0.875rem] leading-relaxed text-[#1a1a1a]/75 mb-7 md:mb-0">
-                I&apos;m a graphic designer from Georgia specializing in visual
-                communication, problem-solving, and creating designs that help
-                brands increase engagement and connect with their audience. I
-                focus on transforming ideas into clear, impactful visuals that
-                strengthen a company&apos;s identity
+      <div
+        ref={trackRef}
+        className="relative w-full"
+        style={{ height: getTrackHeight(wordCount) }}
+      >
+        <div className="sticky top-0 z-20 flex min-h-screen w-full items-center bg-luxe-noir">
+          <div className="grid-layout w-full pb-[0.9rem]">
+            <div className="col-span-12 w-full min-w-0">
+              <p className="mb-10 md:mb-14 text-[0.7rem] font-bold uppercase tracking-[0.22em] text-soft-oat/70">
+                What I Do ↓
               </p>
 
-              <h2 className="order-4 md:order-none md:col-start-2 md:row-start-1 text-[0.75rem] font-bold uppercase tracking-[0.22em]">
-                Tools I Use
-              </h2>
-              <div className="order-5 md:order-none md:col-start-2 md:row-start-2 h-px bg-[#1a1a1a]/25" />
-              <div className="order-6 md:order-none md:col-start-2 md:row-start-3 flex w-full flex-col">
-                {[0, 1, 2].map((rowIndex) => (
-                  <div
-                    key={rowIndex}
-                    className={`grid grid-cols-3 gap-x-4 sm:gap-x-6 md:gap-x-7 lg:gap-x-9 py-3 ${
-                      rowIndex === 0 ? "pt-0" : ""
-                    } ${rowIndex < 2 ? "border-b border-[#1a1a1a]/15" : ""}`}
-                  >
-                    {toolColumns.map((column, colIndex) => (
-                      <span
-                        key={`${rowIndex}-${colIndex}`}
-                        className="text-[0.7rem] sm:text-[0.75rem] md:text-[0.875rem] leading-snug text-[#1a1a1a]/75"
-                      >
-                        {column[rowIndex]}
-                      </span>
-                    ))}
-                  </div>
-                ))}
-              </div>
+              <p
+                ref={textRef}
+                className="font-playfair w-full min-w-0 max-w-[1120px] text-[clamp(1.75rem,4.5vw,3.5rem)] font-normal leading-[1.22] tracking-[-0.015em] text-soft-oat"
+              >
+                {introWords.map((word, index) => (
+                  <span key={`${word}-${index}`}>
+                    <RevealWord word={word} />
+                    {index < introWords.length - 1 ? " " : ""}
+                  </span>
+                ))}{" "}
+                <Link
+                  ref={ctaRef}
+                  href="/#branding"
+                  className="relative z-10 inline border-b-[0.5px] pb-[0.08em] text-soft-oat transition-colors duration-300 hover:text-soft-oat hover:opacity-100 opacity-90"
+                  data-cursor="pointer"
+                >
+                  {REVEAL_CTA.map((word, index) => (
+                    <span key={`${word}-${index}`}>
+                      <RevealWord word={word} />
+                      {index < REVEAL_CTA.length - 1 ? " " : ""}
+                    </span>
+                  ))}
+                </Link>
+              </p>
             </div>
           </div>
         </div>

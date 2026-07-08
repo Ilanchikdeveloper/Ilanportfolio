@@ -32,7 +32,7 @@ export function ProjectCloseButton() {
     <Link
       href={backHref}
       aria-label="Close project"
-      className="fixed bottom-[max(1.25rem,env(safe-area-inset-bottom))] left-[max(1rem,env(safe-area-inset-left))] z-[45] flex items-center gap-2 rounded-full border border-white/15 bg-black/80 px-4 py-2.5 text-[0.72rem] uppercase tracking-[0.14em] text-white/80 backdrop-blur-sm transition-colors duration-300 hover:border-accent-green hover:text-accent-green"
+      className="fixed bottom-[max(1.25rem,env(safe-area-inset-bottom))] left-[max(1rem,env(safe-area-inset-left))] z-[45] flex items-center gap-2 rounded-full border border-soft-oat/20 bg-luxe-noir/80 px-4 py-2.5 text-[0.72rem] uppercase tracking-[0.14em] text-soft-oat/60 backdrop-blur-sm transition-opacity duration-300 hover:border-soft-oat/50 hover:text-soft-oat"
     >
       <span aria-hidden="true">←</span>
       <span>Close</span>

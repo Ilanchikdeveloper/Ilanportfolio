@@ -1,84 +1,56 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
 
 export function Hero() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
-  const headingRef = useRef<HTMLHeadingElement>(null);
-  const paragraphRef = useRef<HTMLParagraphElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    const section = sectionRef.current;
-    const content = contentRef.current;
-    const heading = headingRef.current;
-    const paragraph = paragraphRef.current;
-    if (!section || !content || !heading || !paragraph) return;
+    const video = videoRef.current;
+    if (!video) return;
 
-    gsap.set([heading, paragraph], { y: 80, opacity: 0, force3D: true });
+    const startPlayback = () => {
+      video.play().catch(() => {});
+    };
 
-    const ctx = gsap.context(() => {
-      gsap.to([heading, paragraph], {
-        y: 0,
-        opacity: 1,
-        ease: "none",
-        stagger: 0.12,
-        scrollTrigger: {
-          trigger: content,
-          start: "top 95%",
-          end: "top 60%",
-          scrub: 1.4,
-        },
-      });
+    if (document.readyState === "complete") {
+      startPlayback();
+      return;
+    }
 
-      ScrollTrigger.refresh();
-    }, section);
-
-    return () => ctx.revert();
+    window.addEventListener("load", startPlayback, { once: true });
+    return () => window.removeEventListener("load", startPlayback);
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative w-full overflow-hidden">
-      <div className="relative h-[90vh] min-h-[560px] w-full sm:h-[92vh] md:h-[80vh] md:min-h-0 lg:h-[100vh]">
+    <section className="relative w-full overflow-hidden">
+      <div className="hero-viewport relative w-full">
         <video
-          className="absolute inset-0 h-full w-full object-cover object-[68%_center] md:object-center"
-          autoPlay
+          ref={videoRef}
+          className="hero-video gpu absolute inset-0"
           muted
           loop
           playsInline
           preload="auto"
           aria-hidden="true"
         >
-          <source src="/video/hero-page-video.mp4" type="video/mp4" />
+          <source src="/video/comp-2.mp4" type="video/mp4" />
         </video>
 
         <div
-          className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black"
+          className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/15 to-black/70 sm:from-black/25 sm:via-transparent sm:to-black/65"
           aria-hidden="true"
         />
-      </div>
 
-      <div ref={contentRef} className="bg-black">
-        <div className="grid-layout w-full items-end py-10 md:py-14 lg:py-16">
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-[42%] bg-gradient-to-t from-black/80 via-black/45 to-transparent sm:hidden" aria-hidden="true" />
+
+        <div className="absolute inset-x-0 bottom-0 z-10 grid-layout pb-[max(2rem,env(safe-area-inset-bottom))] pt-24 md:pb-10 md:pt-0">
           <div className="col-span-12">
-            <h1
-              ref={headingRef}
-              className="gpu font-black text-[clamp(1.23rem,6.16vw,4.76rem)] leading-[0.9] tracking-tight text-white mb-[20px]"
-            >
+            <h1 className="font-playfair text-[clamp(1.75rem,7vw,32px)] font-normal leading-none tracking-tight text-soft-oat drop-shadow-[0_2px_18px_rgba(0,0,0,0.55)]">
               Ilan Biniashvili
             </h1>
-
-            <p
-              ref={paragraphRef}
-              className="gpu text-[0.875rem] leading-relaxed text-white/90 max-w-xl md:max-w-2xl"
-            >
-              Visual communication is not decoration—it is structure, hierarchy,
-              rhythm, and meaning. The projects presented here explore how design
-              can simplify complexity and create memorable experiences.
+            <p className="mt-1 font-inter text-[clamp(0.75rem,3.2vw,14px)] font-light uppercase tracking-[0.12em] text-soft-oat/90 drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)]">
+              Graphic<span className="text-soft-oat/50">|</span>Designer
             </p>
           </div>
         </div>

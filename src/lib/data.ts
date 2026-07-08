@@ -8,31 +8,37 @@ import { suberlevProject } from "./projects/suberlev";
 
 export const brandingProjects = [
   {
-    id: "koru",
+    id: koruProject.id,
     tag: koruProject.tag,
     title: koruProject.title,
     description: koruProject.description,
     color: koruProject.color,
     video: koruProject.video,
     href: koruProject.href,
+    year: koruProject.year,
+    services: koruProject.services,
   },
   {
-    id: "suberlev",
+    id: suberlevProject.id,
     tag: suberlevProject.tag,
     title: suberlevProject.title,
     description: suberlevProject.description,
     color: suberlevProject.color,
     video: suberlevProject.video,
     href: suberlevProject.href,
+    year: suberlevProject.year,
+    services: suberlevProject.services,
   },
   {
-    id: "affio",
+    id: affioProject.id,
     tag: affioProject.tag,
     title: affioProject.title,
     description: affioProject.description,
     color: affioProject.color,
     video: affioProject.video,
     href: affioProject.href,
+    year: affioProject.year,
+    services: affioProject.services,
   },
 ];
 
@@ -52,6 +58,16 @@ export const tools = [
   "Webflow",
   "Notepad",
   "My brain :)",
+];
+
+export const aboutBio = [
+  "I'm Ilan Biniashvili, a Graphic Designer specializing in brand identity, visual systems, and communication design. I help businesses build memorable brands through strategic, cohesive design that works seamlessly across every touchpoint.",
+  "From logo design and brand guidelines to digital campaigns, print materials, social media, and web experiences, I create scalable design systems that ensure consistency while helping companies communicate clearly, stand out, and grow",
+];
+
+export const aboutToolsRows = [
+  ["Adobe Illustrator", "Adobe Indesign", "After effects", "Photoshop"],
+  ["Ai Tools", "Figma", "Premiere Pro", "My Brain:)"],
 ];
 
 export const posterDesignFeatured = {
@@ -373,10 +389,39 @@ export const socialDesignSections = [
 ];
 
 export const otherWork = [
-  { id: "poster", title: "Poster Design", href: "/work/poster" },
-  { id: "packaging", title: "Packaging Design", href: "/work/packaging" },
-  { id: "logofolio", title: "Logofolio 2026", href: "/work/logofolio" },
-  { id: "social", title: "Social Media Design", href: "/work/social" },
+  {
+    id: "poster",
+    title: "Poster Design",
+    href: "/work/poster",
+    preview: "/photos/poster-design/poster-0.webp",
+    previewAlt: "Poster design preview",
+  },
+  {
+    id: "packaging",
+    title: "Packaging Design",
+    href: "/work/packaging",
+    preview: "/photos/packaging-design/packaging-1.webp",
+    previewAlt: "Packaging design preview",
+  },
+  {
+    id: "logofolio",
+    title: "Logofolio 2026",
+    href: "/work/logofolio",
+    previewGrid: [
+      "/photos/logofolio/logo-1.webp",
+      "/photos/logofolio/logo-2.webp",
+      "/photos/logofolio/logo-6.webp",
+      "/photos/logofolio/logo-4.webp",
+    ],
+    previewAlt: "Logofolio preview",
+  },
+  {
+    id: "social",
+    title: "Social Media Design",
+    href: "/work/social",
+    preview: "/photos/social-media/social-1.webp",
+    previewAlt: "Social media design preview",
+  },
 ];
 
 export const socialLinks = [

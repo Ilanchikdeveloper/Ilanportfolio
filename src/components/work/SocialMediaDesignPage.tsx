@@ -90,12 +90,12 @@ export default function SocialMediaDesignPage() {
   };
 
   return (
-    <div ref={pageRef} className="bg-black text-white">
+    <div ref={pageRef} className="bg-luxe-noir text-soft-oat">
       <div className="project-page">
         <div className="pt-24 sm:pt-28 md:pt-32 pb-6 sm:pb-8">
           <Link
             href="/#other-work"
-            className="text-[0.875rem] text-white/55 hover:text-accent-green transition-colors duration-500 hover-line w-fit"
+            className="text-[0.875rem] text-soft-oat/55 hover:text-soft-oat transition-opacity duration-500 hover-line w-fit"
           >
             ← Back to other work
           </Link>
@@ -104,14 +104,14 @@ export default function SocialMediaDesignPage() {
         <div ref={introRef} className="pb-16 md:pb-24">
           <h1
             ref={headingRef}
-            className="gpu text-[clamp(3rem,10vw,7rem)] font-black leading-[0.9] tracking-tight text-[#1a1a1a] mb-[20px] will-change-transform"
+            className="gpu font-playfair text-[clamp(3rem,10vw,7rem)] font-normal leading-[0.9] tracking-tight text-soft-oat mb-[20px] will-change-transform"
           >
             SOCIAL MEDIA DESIGN
           </h1>
 
           <p
             ref={paragraphRef}
-            className="gpu text-[0.875rem] leading-relaxed text-white/55 max-w-xl md:max-w-2xl will-change-transform"
+            className="gpu text-[0.875rem] leading-relaxed text-soft-oat/55 max-w-xl md:max-w-2xl will-change-transform"
           >
             Social content built for scroll-stopping impact—combining brand
             identity, typography, and visual rhythm across digital platforms.
@@ -149,7 +149,7 @@ export default function SocialMediaDesignPage() {
                   <div
                     key={item.src}
                     data-gallery-item
-                    className="gpu overflow-hidden rounded-sm bg-black"
+                    className="gpu overflow-hidden rounded-sm bg-luxe-noir"
                   >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img

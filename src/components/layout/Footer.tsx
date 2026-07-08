@@ -19,7 +19,7 @@ export function Footer() {
           <div className="flex flex-col items-start md:items-end gap-6">
             <a
               href={`mailto:${email}?subject=Hello%20Ilan`}
-              className="text-base md:text-lg text-text hover:text-accent-green transition-colors duration-500 hover-line break-all"
+              className="text-base md:text-lg text-text/60 hover:text-text transition-opacity duration-500 hover-line break-all"
             >
               {email}
             </a>
@@ -31,7 +31,7 @@ export function Footer() {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-text/75 hover:text-accent-green transition-colors duration-500 hover-line"
+                  className="text-text/55 hover:text-text transition-opacity duration-500 hover-line"
                 >
                   {link.label}
                 </a>

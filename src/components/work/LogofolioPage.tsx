@@ -84,12 +84,12 @@ export default function LogofolioPage() {
   }, []);
 
   return (
-    <div ref={pageRef} className="bg-black text-white">
+    <div ref={pageRef} className="bg-luxe-noir text-soft-oat">
       <div className="project-page">
         <div className="pt-24 sm:pt-28 md:pt-32 pb-6 sm:pb-8">
           <Link
             href="/#other-work"
-            className="text-[0.875rem] text-white/55 hover:text-accent-green transition-colors duration-500 hover-line w-fit"
+            className="text-[0.875rem] text-soft-oat/55 hover:text-soft-oat transition-opacity duration-500 hover-line w-fit"
           >
             ← Back to other work
           </Link>
@@ -98,14 +98,14 @@ export default function LogofolioPage() {
         <div ref={introRef} className="pb-16 md:pb-24">
           <h1
             ref={headingRef}
-            className="gpu text-[clamp(3rem,10vw,7rem)] font-black leading-[0.9] tracking-tight text-[#1a1a1a] mb-[20px] will-change-transform"
+            className="gpu font-playfair text-[clamp(3rem,10vw,7rem)] font-normal leading-[0.9] tracking-tight text-soft-oat mb-[20px] will-change-transform"
           >
             LOGOFOLIO 2026
           </h1>
 
           <p
             ref={paragraphRef}
-            className="gpu text-[0.875rem] leading-relaxed text-white/55 max-w-xl md:max-w-2xl will-change-transform"
+            className="gpu text-[0.875rem] leading-relaxed text-soft-oat/55 max-w-xl md:max-w-2xl will-change-transform"
           >
             A collection of logo marks and wordmarks—each built to communicate
             identity with clarity, character, and lasting recognition.

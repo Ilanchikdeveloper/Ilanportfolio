@@ -1,12 +1,14 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import gsap from "gsap";
 
 const INTERACTIVE =
   "a, button, [role='button'], input, textarea, select, label, [data-cursor='pointer']";
 
-const LIGHT_SURFACE = "#about, #other-work, header[data-on-light]";
+const LIGHT_SURFACE =
+  "#other-work, #branding[data-surface='light'], header[data-on-light]";
 
 export function CustomCursor() {
   const coreRef = useRef<HTMLDivElement>(null);
@@ -15,6 +17,12 @@ export function CustomCursor() {
   const hoveringRef = useRef(false);
   const clickingRef = useRef(false);
   const onLightRef = useRef(false);
+  const resetCursorRef = useRef<(() => void) | null>(null);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    resetCursorRef.current?.();
+  }, [pathname]);
 
   useEffect(() => {
     if (!window.matchMedia("(pointer: fine)").matches) return;
@@ -120,17 +128,40 @@ export function CustomCursor() {
     const onDown = () => setClick(true);
     const onUp = () => setClick(false);
 
+    const resetHover = () => {
+      clickingRef.current = false;
+      hoveringRef.current = false;
+      frame.classList.remove("is-hover", "is-click");
+      core.classList.remove("is-hover", "is-click");
+      frameScale(1);
+      coreScale(1);
+      labelOpacity(0);
+      gsap.set(frame, { rotation: 0 });
+    };
+
+    resetCursorRef.current = resetHover;
+
+    const onLinkClick = (event: MouseEvent) => {
+      const target = event.target as Element | null;
+      if (target?.closest("a")) {
+        resetHover();
+      }
+    };
+
     window.addEventListener("mousemove", onMove);
     window.addEventListener("mousedown", onDown);
     window.addEventListener("mouseup", onUp);
+    document.addEventListener("click", onLinkClick, true);
     document.addEventListener("mouseleave", onLeave);
     document.addEventListener("mouseenter", onEnter);
 
     return () => {
+      resetCursorRef.current = null;
       document.body.classList.remove("custom-cursor-active");
       window.removeEventListener("mousemove", onMove);
       window.removeEventListener("mousedown", onDown);
       window.removeEventListener("mouseup", onUp);
+      document.removeEventListener("click", onLinkClick, true);
       document.removeEventListener("mouseleave", onLeave);
       document.removeEventListener("mouseenter", onEnter);
     };

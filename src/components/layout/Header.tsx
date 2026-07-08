@@ -9,6 +9,7 @@ export function Header() {
   const headerRef = useRef<HTMLElement>(null);
   const pathname = usePathname();
   const [onLight, setOnLight] = useState(false);
+  const [inHero, setInHero] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -41,6 +42,7 @@ export function Header() {
 
     if (pathname.startsWith("/work")) {
       setOnLight(false);
+      setInHero(false);
       return;
     }
 
@@ -57,10 +59,15 @@ export function Header() {
       const otherWorkTop = otherWork?.getBoundingClientRect().top ?? Infinity;
       const contactTop = contact?.getBoundingClientRect().top ?? Infinity;
 
-      const inAbout = aboutTop <= 80 && brandingTop > 80;
-      const inOtherWork = otherWorkTop <= 80 && contactTop > 80;
+      setInHero(aboutTop > 80);
 
-      setOnLight(inAbout || inOtherWork);
+      const inOtherWork = otherWorkTop <= 80 && contactTop > 80;
+      const inBrandingLight =
+        brandingTop <= 80 &&
+        otherWorkTop > 80 &&
+        branding?.dataset.surface === "light";
+
+      setOnLight(inOtherWork || inBrandingLight);
     };
 
     onScroll();
@@ -99,10 +106,12 @@ export function Header() {
   }, []);
 
   const iconColor = menuOpen
-    ? "bg-white"
+    ? "bg-soft-oat"
     : onLight
-      ? "bg-[#1a1a1a]"
-      : "bg-white";
+      ? "bg-luxe-noir"
+      : inHero
+        ? "bg-hero-earth"
+        : "bg-soft-oat";
 
   return (
     <>
@@ -116,7 +125,11 @@ export function Header() {
             <a href="/" className="block w-fit shrink-0">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/photos/my-logo.svg"
+                src={
+                  !menuOpen && inHero
+                    ? "/photos/my-logo-hero.svg"
+                    : "/photos/my-logo.svg"
+                }
                 alt="Ilan Biniashvili"
                 className={`h-9 w-auto md:h-11 transition-[filter] duration-500 ${
                   !menuOpen && onLight ? "nav-logo-on-light" : ""
@@ -129,8 +142,12 @@ export function Header() {
                 <a
                   key={link.href}
                   href={link.href}
-                  className={`hover-line text-[0.875rem] tracking-[0.02em] transition-colors duration-500 hover:text-accent-green ${
-                    onLight ? "text-[#1a1a1a]/80" : "text-white/80"
+                  className={`hover-line text-[0.875rem] tracking-[0.02em] transition-opacity duration-500 ${
+                    onLight
+                      ? "text-luxe-noir/65 hover:text-luxe-noir"
+                      : inHero
+                        ? "text-hero-earth-dark/80 hover:text-hero-earth-dark"
+                        : "text-soft-oat/65 hover:text-soft-oat"
                   }`}
                 >
                   {link.label}
@@ -169,7 +186,7 @@ export function Header() {
 
       <div
         id="site-menu"
-        className={`fixed inset-0 z-40 bg-black/95 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${
+        className={`fixed inset-0 z-40 bg-luxe-noir/95 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${
           menuOpen
             ? "pointer-events-auto opacity-100"
             : "pointer-events-none opacity-0"
@@ -182,7 +199,7 @@ export function Header() {
               key={link.href}
               href={link.href}
               onClick={() => setMenuOpen(false)}
-              className="hover-line font-display text-3xl sm:text-4xl font-thin tracking-tight text-white transition-colors duration-500 hover:text-accent-green"
+              className="hover-line font-display text-3xl sm:text-4xl font-thin tracking-tight text-soft-oat/65 transition-opacity duration-500 hover:text-soft-oat"
             >
               {link.label}
             </a>
