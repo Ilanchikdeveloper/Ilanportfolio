@@ -1,5 +1,39 @@
 @import "tailwindcss";
 
+/* Keep the selected branding project lit without placing a click-blocking
+   overlay above the page or interfering with GSAP's transform/opacity. */
+@media (hover: hover) and (pointer: fine) {
+  body:has(#branding) :is(header, footer, main > section:not(#branding),
+    #branding > :first-child, [data-branding-card]) {
+    transition: filter 450ms ease;
+  }
+
+  [data-project-media] {
+    border-radius: 2px;
+    transition: box-shadow 450ms ease, filter 450ms ease;
+  }
+
+  body:has([data-branding-card] a:is(:hover, :focus-visible))
+    :is(header, footer, main > section:not(#branding), #branding > :first-child),
+  body:has([data-branding-card] a:is(:hover, :focus-visible))
+    [data-branding-card]:not(:has(a:is(:hover, :focus-visible))) {
+    filter: brightness(0.3);
+  }
+
+  [data-branding-card] a:is(:hover, :focus-visible) [data-project-media] {
+    filter: brightness(1.08);
+    box-shadow: 0 0 0 1px rgb(240 237 229 / 18%),
+      0 0 45px rgb(240 237 229 / 10%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body:has(#branding) :is(header, footer, main > section:not(#branding),
+    #branding > :first-child, [data-branding-card], [data-project-media]) {
+    transition: none;
+  }
+}
+
 @theme {
   --color-luxe-noir: #060d0c;
   --color-soft-oat: #f0ede5;
