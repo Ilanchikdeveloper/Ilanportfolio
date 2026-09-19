@@ -135,7 +135,7 @@ export function ProjectCard({
   );
 
   const media = (
-    <div className="relative w-full [perspective:900px]">
+    <div data-project-media className="relative w-full [perspective:900px]">
       <div
         ref={tiltRef}
         className="gpu relative aspect-[5/3] overflow-hidden rounded-sm bg-[#060D0C] [transform-style:preserve-3d] will-change-transform sm:aspect-[2/1] lg:aspect-[16/9] lg:min-h-[17.6rem] xl:min-h-[20.8rem]"
